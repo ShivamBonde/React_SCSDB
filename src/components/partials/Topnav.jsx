@@ -1,13 +1,28 @@
-import React, { useState } from "react";
+import axios from "../../utils/axios";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import noimage from "../../../public/noimage.jpg";
 
 const Topnav = () => {
   const [query, setquery] = useState("");
+  const [searches, setsearches] = useState([]);
 
-  console.log(query);
+  const GetSerches = async () => {
+    try {
+      const { data } = await axios.get(`/search/multi?query=${query}`);
+      setsearches(data.results);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
+  useEffect(() => {
+    GetSerches();
+  }, [query]);
+
   return (
     <div className="relative flex items-center  w-full h-[10vh] ">
-      <i class="ml-[21%] text-zinc-400 text-3xl ri-search-line"></i>
+      <i className="ml-[21%] text-zinc-400 text-3xl ri-search-line"></i>
       <input
         onChange={(e) => setquery(e.target.value)}
         value={query}
@@ -18,15 +33,31 @@ const Topnav = () => {
       {query.length > 0 && (
         <i
           onClick={() => setquery("")}
-          class="text-zinc-400 text-3xl ri-close-line hover:cursor-pointer "
+          className="text-zinc-400 text-3xl ri-close-line hover:cursor-pointer "
         ></i>
       )}
-
       <div className="ml-[21%] absolute rounded w-[50%] max-h-[50vh] bg-zinc-200 top-[90%] overflow-auto">
-        <Link className="hover:text-black hover:bg-zinc-300 duration-200 font-semibold text-zinc-600 w-[100%] p-10 flex justify-start items-center border-b-2 border-zinc-100">
-          <img src="" alt="" />
-          <span>hello evvery one</span>
-        </Link>
+        {searches.map((s, i) => (
+          <Link
+            key={i}
+            className="hover:text-black hover:bg-zinc-300 duration-200 font-semibold text-zinc-600 w-[100%] p-10 flex justify-start items-center border-b-2 border-zinc-100"
+          >
+            <img
+              className="w-[10vh] h-[10vh] object-cover rounded mr-5 shadow-lg"
+              src={
+                s.backdrop_path || s.profile_path
+                  ? `https://image.tmdb.org/t/p/original/${
+                      s.backdrop_path || s.profile_path
+                    }`
+                  : noimage
+              }
+              alt=""
+            />
+            <span>
+              {s.name || s.title || s.original_name || s.original_title}
+            </span>
+          </Link>
+        ))}
       </div>
     </div>
   );
