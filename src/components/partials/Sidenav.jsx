@@ -22,7 +22,7 @@ const Sidenav = () => {
           <i class="mr-2 ri-movie-2-fill"></i>Movies
         </Link>
         <Link className="hover:bg-[#6556CD] hover:text-white duration-300 rounded-lg p-4">
-          <i class="mr-2 ri-tv-2-fill"></i>TV shows
+          <i class="mr-2 ri-tv-2-fill"></i>TV shows 
         </Link>
         <Link className="hover:bg-[#6556CD] hover:text-white duration-300 rounded-lg p-4">
           <i class="mr-2 ri-team-fill"></i>People
@@ -39,7 +39,7 @@ const Sidenav = () => {
           <i class="mr-2 ri-information-2-fill"></i>About SCSDB
         </Link>
         <Link className="hover:bg-[#6556CD] hover:text-white duration-300 rounded-lg p-4">
-        <i class="mr-2 ri-phone-fill"></i>Contact Us
+          <i class="mr-2 ri-phone-fill"></i>Contact Us
         </Link>
       </nav>
     </div>
