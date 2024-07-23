@@ -45,7 +45,7 @@ const Home = () => {
         <Header data={wallpaper} />
 
         <div className="mt-5 flex justify-between p-3">
-          <h1 className=" text-3xl text-zinc-400 font-semibold">Trending</h1>
+          <h1 className=" text-3xl px-5 text-zinc-400 font-semibold">Trending</h1>
           <Dropdown
             title="Filter"
             options={["tv", "movie", "all"]}
