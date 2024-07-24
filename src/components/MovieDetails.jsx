@@ -8,6 +8,7 @@ import {
   useParams,
 } from "react-router-dom";
 import { asyncloadmovie, removemovie } from "../store/actions/movieActions";
+import HorizontalCards from "./partials/HorizontalCards";
 import Loading from "./Loading";
 
 function Moviedetails() {
@@ -21,7 +22,7 @@ function Moviedetails() {
     return () => {
       dispatch(removemovie());
     };
-  }, []);
+  }, [id]);
 
   return info ? (
     <div
@@ -31,7 +32,7 @@ function Moviedetails() {
         backgroundPosition: "top-center",
         backgroundSize: "cover",
       }}
-      className="w-screen h-screen px-[10%]"
+      className="w-screen h-[155vh] px-[10%] "
     >
       {/* part-1 */}
       <nav className="h-[10vh] w-full text-zinc-100 flex items-center gap-10 text-xl">
@@ -94,8 +95,13 @@ function Moviedetails() {
           <h1 className="text-2xl my-3">Overview</h1>
           <p>{info.details.overview}</p>
           <h1 className="text-2xl my-3">Movie Translated</h1>
-          <p className="mb-3">{info.translations.join(", ")}</p>
-          <Link className="px-5 py-2 bg-red-200 rounded-lg ">Play Trailer</Link>
+          <p className="mb-5">{info.translations.join(", ")}</p>
+          <Link
+            to={`${pathname}/trailer`}
+            className="px-6 py-3 bg-[#6556CD] rounded-lg "
+          >
+            <i className="ri-play-fill text-xl "></i> Play Trailer
+          </Link>
         </div>
       </div>
 
@@ -146,6 +152,13 @@ function Moviedetails() {
           </div>
         )}
       </div>
+
+      {/* part-4  */}
+      <hr className="mt-8 mb-3 border-none h-[2px] bg-zinc-500"/>
+      <h1 className="text-2xl  font-bold text-white">Recommendations and Similar stuff</h1>
+      <HorizontalCards
+        data={info.recommendations.length>0 ? info.recommendations : info.similar}
+      />
     </div>
   ) : (
     <Loading />
