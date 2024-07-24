@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   Link,
   NavLink,
+  Outlet,
   useLocation,
   useNavigate,
   useParams,
@@ -32,7 +33,7 @@ function Moviedetails() {
         backgroundPosition: "top-center",
         backgroundSize: "cover",
       }}
-      className="w-screen h-[155vh] px-[10%] "
+      className="relative w-screen h-[155vh] px-[10%] "
     >
       {/* part-1 */}
       <nav className="h-[10vh] w-full text-zinc-100 flex items-center gap-10 text-xl">
@@ -159,6 +160,7 @@ function Moviedetails() {
       <HorizontalCards
         data={info.recommendations.length>0 ? info.recommendations : info.similar}
       />
+      <Outlet/>
     </div>
   ) : (
     <Loading />
