@@ -32,7 +32,10 @@ function Header({ data }) {
         <i className="ri-album-fill text-yellow-500"></i>
         {data.media_type.toUpperCase()}
       </p>
-      <Link className="p-4 rounded text-white mt-5 bg-[#6556cd]">
+      <Link
+        to={`/${data.media_type}/details/${data.id}/trailer`}
+        className="p-4 rounded text-white mt-5 bg-[#6556cd]"
+      >
         Watch Trailer
       </Link>
     </div>
