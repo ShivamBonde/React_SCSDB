@@ -1,7 +1,6 @@
 import React from "react";
-import Dropdown from "./Dropdown";
 import { Link } from "react-router-dom";
-import noimage from "../../../public/noimage.jpg";
+import noimage from "/noimage.jpg";;
 
 function HorizontalCards({ data, func }) {
   return (

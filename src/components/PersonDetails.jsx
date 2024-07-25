@@ -1,13 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  Link,
-  NavLink,
-  Outlet,
-  useLocation,
-  useNavigate,
-  useParams,
-} from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { asyncloadperson, removeperson } from "../store/actions/personActions";
 import HorizontalCards from "./partials/HorizontalCards";
 import Loading from "./Loading";
@@ -30,7 +23,7 @@ const PersonDetails = () => {
   console.log(info);
 
   return info ? (
-    <div className="px-[10%] h-[170vh] w-screen bg-[#1F1E24]">
+    <div className="px-[10%] h-[195vh] w-screen bg-[#1F1E24]">
       <nav className="h-[8vh] w-full text-zinc-100 flex items-center gap-10 text-2xl">
         <Link
           onClick={() => navigate(-1)}
@@ -134,7 +127,27 @@ const PersonDetails = () => {
               func={(e) => setcategory(e.target.value)}
             />
           </div>
-          <div className="w-full h-[50vh] overflow-x-hidden overflow-y-auto shadow-2xl shadow-white mt-5"></div>
+          <div className="w-full h-[50vh] overflow-x-hidden overflow-y-auto shadow-lg shadow-zinc-300 mt-6 border-2 border-zinc-700 p-6 list-disc text-zinc-400">
+            {info[category + "Credits"].cast.map((c, i) => (
+              <li
+                key={i}
+                className="hover:text-white duration-300 cursor-pointer mt-4"
+              >
+                <Link to={`/${category}/details/${c.id}`}>
+                  <span className="inline">
+                    {c.name || c.title || c.original_name || c.original_title}
+                  </span>
+                  {c.character ? (
+                    <span className="block ml-5">
+                      Character Name: {c.character}
+                    </span>
+                  ) : (
+                    ""
+                  )}
+                </Link>
+              </li>
+            ))}
+          </div>
         </div>
       </div>
     </div>

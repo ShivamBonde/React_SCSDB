@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import noimage from "../../../public/noimage.jpg";
+import noimage from "/noimage.jpg";
 
 const Cards = ({ data, title }) => {
   return (
